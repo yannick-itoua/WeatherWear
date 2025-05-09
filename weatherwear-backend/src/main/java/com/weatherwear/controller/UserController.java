@@ -26,4 +26,14 @@ public class UserController {
     public User getUserProfile(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
+
+    @PutMapping("/{username}/preference")
+    public User updateClothingPreference(@PathVariable String username, @RequestBody String clothingPreference) {
+        User user = userService.getUserByUsername(username);
+        if (user != null) {
+            user.setClothingPreference(clothingPreference);
+            return userService.updateUserProfile(user);
+        }
+        return null;
+    }
 }

@@ -10,14 +10,18 @@ public class WeatherRequest implements Serializable {
     private String date;
     private String time;
     private String weatherType;
+    private Double latitude;
+    private Double longitude;
 
     public WeatherRequest() {} // No-args constructor
 
-    public WeatherRequest(String location, String date, String time, String weatherType) {
+    public WeatherRequest(String location, String date, String time, String weatherType, Double latitude, Double longitude) {
         this.location = location;
         this.date = date;
         this.time = time;
         this.weatherType = weatherType;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getLocation() {
@@ -50,5 +54,21 @@ public class WeatherRequest implements Serializable {
 
     public void setWeatherType(String weatherType) {
         this.weatherType = weatherType;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

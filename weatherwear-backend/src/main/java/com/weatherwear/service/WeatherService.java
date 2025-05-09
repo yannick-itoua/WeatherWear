@@ -22,6 +22,15 @@ public class WeatherService {
         suggestion.setHumidityLevel("Medium");
         suggestion.setWindSpeed("10 km/h");
         suggestion.setPrecipitationChance("20%");
+        
+        if (request.getLatitude() != null && request.getLongitude() != null) {
+            // Call weather API with lat/lon
+            // Example: apiUrl + "?lat=" + request.getLatitude() + "&lon=" + request.getLongitude() + ...
+        } else if (request.getLocation() != null) {
+            // Call weather API with city name
+            // Example: apiUrl + "?q=" + request.getLocation() + ...
+        }
+        
         return suggestion;
     }
 }

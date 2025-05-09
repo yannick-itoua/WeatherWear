@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "users") // <-- Add this annotation
+@Table(name = "users")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +16,18 @@ public class User implements Serializable {
     private String phoneNumber;
     private String address;
 
+    // New field for clothing preference (e.g. "cold-sensitive", "heat-tolerant", etc.)
+    private String clothingPreference;
+
     public User() {} // No-args constructor for JPA
 
-    public User(String username, String password, String email, String phoneNumber, String address) {
+    public User(String username, String password, String email, String phoneNumber, String address, String clothingPreference) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.clothingPreference = clothingPreference;
     }
 
     public Long getId() {
@@ -72,5 +76,13 @@ public class User implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getClothingPreference() {
+        return clothingPreference;
+    }
+
+    public void setClothingPreference(String clothingPreference) {
+        this.clothingPreference = clothingPreference;
     }
 }
