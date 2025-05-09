@@ -21,6 +21,9 @@ Thumbs.db
 /.project
 /.classpath
 /.settings/
+# Ignore Spring Boot application properties
+/src/main/resources/application.properties
+/src/main/resources/application-prod.properties
 
 # --- FRONTEND (Next.js/Node) ---
 /node_modules/
