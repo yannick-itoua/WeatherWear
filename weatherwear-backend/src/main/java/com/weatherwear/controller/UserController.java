@@ -3,6 +3,7 @@ package com.weatherwear.controller;
 import com.weatherwear.model.User;
 import com.weatherwear.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,8 +24,13 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public User getUserProfile(@PathVariable String username) {
-        return userService.getUserByUsername(username);
+    public ResponseEntity<User> getUserProfile(@PathVariable String username) {
+        User user = userService.getUserByUsername(username);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{username}/preference")

@@ -2,6 +2,8 @@
 .DS_Store
 Thumbs.db
 *.log
+
+# --- ENVIRONMENT VARIABLES ---
 .env
 .env.local
 .env.*.local
