@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
+/* Root color variables for light and dark mode */
 :root {
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #f1f5f9;
+  --border: #e5e7eb;
+  --radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #60a5fa;
+    --primary-hover: #3b82f6;
+    --secondary: #1e293b;
+    --border: #334155;
   }
 }
 
+/* Base styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover, a:focus {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Buttons */
+button, .btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5em 1.25em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover, .btn:hover, button:focus, .btn:focus {
+  background: var(--primary-hover);
+  outline: none;
+}
+
+/* Inputs & Selects */
+input, select, textarea {
+  background: var(--secondary);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5em 0.75em;
+  font-size: 1em;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-hover)33;
+  outline: none;
+}
+
+/* Cards and containers */
+.card, .container, .shadow {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1em;
+  }
+  .container, .card {
+    padding: 1em;
+  }
+}
+
+/* Utility: smooth transitions for theme changes */
+* {
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }

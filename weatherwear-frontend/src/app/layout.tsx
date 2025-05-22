@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { UserProvider } from "../context/UserContext";
 
 export const metadata = {
   title: "WeatherWear",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-gray-50">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <UserProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </UserProvider>
       </body>
     </html>
   );

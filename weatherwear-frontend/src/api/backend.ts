@@ -1,10 +1,8 @@
 import { User, WeatherRequest, AdviceHistory, ClothingSuggestion } from "../types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
-
 // User API
 export async function registerUser(user: User): Promise<User> {
-  const res = await fetch(`${API_URL}/api/users/register`, {
+  const res = await fetch(`/api/users/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
@@ -13,12 +11,12 @@ export async function registerUser(user: User): Promise<User> {
 }
 
 export async function getUserProfile(username: string): Promise<User> {
-  const res = await fetch(`${API_URL}/api/users/${username}`);
+  const res = await fetch(`/api/users/${username}`);
   return res.json();
 }
 
 export async function updateClothingPreference(username: string, clothingPreference: string): Promise<User> {
-  const res = await fetch(`${API_URL}/api/users/${username}/preference`, {
+  const res = await fetch(`/api/users/${username}/preference`, {
     method: "PUT",
     headers: { "Content-Type": "text/plain" },
     body: clothingPreference,
@@ -28,7 +26,7 @@ export async function updateClothingPreference(username: string, clothingPrefere
 
 // Weather API
 export async function getClothingSuggestion(data: WeatherRequest): Promise<ClothingSuggestion> {
-  const res = await fetch(`${API_URL}/api/weather/suggest`, {
+  const res = await fetch(`/api/weather/suggest`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -37,13 +35,14 @@ export async function getClothingSuggestion(data: WeatherRequest): Promise<Cloth
 }
 
 export async function getRealtimeClothingSuggestion(city: string): Promise<ClothingSuggestion> {
-  const res = await fetch(`${API_URL}/api/weather/realtime?city=${encodeURIComponent(city)}`);
+  // Already using Next.js API route
+  const res = await fetch(`/api/weather/realtime?city=${encodeURIComponent(city)}`);
   return res.json();
 }
 
 // Advice History API
 export async function saveAdviceHistory(advice: AdviceHistory): Promise<AdviceHistory> {
-  const res = await fetch(`${API_URL}/api/advice-history`, {
+  const res = await fetch(`/api/advice-history`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(advice),
@@ -52,11 +51,11 @@ export async function saveAdviceHistory(advice: AdviceHistory): Promise<AdviceHi
 }
 
 export async function getAdviceHistory(username: string): Promise<AdviceHistory[]> {
-  const res = await fetch(`${API_URL}/api/advice-history/${username}`);
+  const res = await fetch(`/api/advice-history/${username}`);
   return res.json();
 }
 
 export async function getAdviceHistoryByDate(username: string, date: string): Promise<AdviceHistory[]> {
-  const res = await fetch(`${API_URL}/api/advice-history/${username}/${date}`);
+  const res = await fetch(`/api/advice-history/${username}/${date}`);
   return res.json();
 }

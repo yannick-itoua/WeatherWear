@@ -22,7 +22,6 @@ public class WeatherController {
         return weatherService.getClothingSuggestion(request);
     }
 
-    // New endpoint for real-time weather fetch by city name
     @GetMapping("/realtime")
     public ClothingSuggestion getRealtimeClothingSuggestion(@RequestParam String city) {
         WeatherRequest request = new WeatherRequest();

@@ -1,10 +1,7 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const HomePage: React.FC = () => (
   <div className="flex flex-col min-h-screen">
-    <Navbar />
     <main className="flex-1 flex flex-col items-center justify-center p-8">
       <h1 className="text-4xl font-bold mb-4 text-blue-700">Welcome to WeatherWear</h1>
       <p className="text-lg text-gray-700 mb-8 text-center max-w-xl">
@@ -26,7 +23,6 @@ const HomePage: React.FC = () => (
         </a>
       </div>
     </main>
-    <Footer />
   </div>
 );
 

@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/advice-history/[username]/[date]/route.js", "src/app/api/advice-history/route.js", "src/app/api/advice-history/[username]/route.js", "src/app/api/users/[username]/route.js", "src/app/api/users/[username]/preference/route.js"],
   "exclude": ["node_modules"]
 }

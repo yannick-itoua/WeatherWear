@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { registerUser } from "../../api/backend";
 import { User } from "../../types";
 import ErrorAlert from "../../components/ErrorAlert";
 
 const RegisterPage: React.FC = () => {
+  const router = useRouter();
   const [form, setForm] = useState<User>({
     username: "",
     password: "",
@@ -14,7 +16,6 @@ const RegisterPage: React.FC = () => {
     clothingPreference: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -25,18 +26,9 @@ const RegisterPage: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccess(false);
     try {
       await registerUser(form);
-      setSuccess(true);
-      setForm({
-        username: "",
-        password: "",
-        email: "",
-        phoneNumber: "",
-        address: "",
-        clothingPreference: "",
-      });
+      router.push("/login");
     } catch {
       setError("Registration failed.");
     }
@@ -47,7 +39,6 @@ const RegisterPage: React.FC = () => {
     <div className="max-w-md mx-auto p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold mb-4">Register</h1>
       {error && <ErrorAlert message={error} onClose={() => setError(null)} />}
-      {success && <div className="text-green-600 mb-4">Registration successful!</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block mb-1 font-medium">Username</label>
